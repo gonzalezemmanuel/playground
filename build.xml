@@ -90,4 +90,16 @@
 		</exec>
 	</target>
 
+        <target name="phpunit">
+  		<exec dir="${basedir}/vendor/bin" executable="phpunit" failonerror="true" description="Run unit tests with PHPUnit">
+  			<arg line="-c ${basedir}/module/AdfabGame" />   
+  		</exec>
+        </target>
+   
+        <target name="coverage-checker" depends="phpunit">
+  		<exec dir="/usr/bin" executable="php" failonerror="true" description="check unit test coverage percentage">
+  			<arg line="${basedir}/build/coverage-checker.php ${basedir}/module/AdfabGame/build/clover.xml 2" />   
+  		</exec>
+        </target>
+
 </project>
